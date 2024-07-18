@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Xadrez JS</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="fav.png" />
+	<link rel="stylesheet" href="style.css"> 
+</head>
+<body onload="zoom()">
+<button id="new" onclick="gameSelect();">NOVO</button>
+<div id="gstray">
+	<button class="newselect" id="new0" onclick="setView(0); newGame(0);">Jogar como Brancas</button>
+	<button class="newselect" id="new1" onclick="setView(1); newGame(1);">Jogar como Pretas</button>
+	<button class="newselect" id="new2" onclick="setView(2); newGame(2);">2 jogadores</button>
+</div>
+<button class="viewb uns" type="button" title="Visão das brancas" onclick="setView(0)" value="0">♔</button><button class="viewb uns" title="Visão das pretas" onclick="setView(1)" value="1">♚</button><button class="viewb sel" title="Girar automaticamente" onclick="setView(2)" value="2">↻</button><br><br>
+<div id="board">
+	<div id="ncoord"><li class="nc">8</li><li class="nc">7</li><li class="nc">6</li><li class="nc">5</li><li class="nc">4</li><li class="nc">3</li><li class="nc">2</li><li class="nc">1</li></div>
+	<table>
+		<tr id="8">
+			<td id="a8" class="light"></td>
+			<td id="b8" class="dark"></td>
+			<td id="c8" class="light"></td>
+			<td id="d8" class="dark"></td>
+			<td id="e8" class="light"></td>
+			<td id="f8" class="dark"></td>
+			<td id="g8" class="light"></td>
+			<td id="h8" class="dark"></td>
+		</tr>
+		<tr id="7">
+			<td id="a7" class="dark"></td>
+			<td id="b7" class="light"></td>
+			<td id="c7" class="dark"></td>
+			<td id="d7" class="light"></td>
+			<td id="e7" class="dark"></td>
+			<td id="f7" class="light"></td>
+			<td id="g7" class="dark"></td>
+			<td id="h7" class="light"></td>
+		</tr>
+		<tr id="6">
+			<td id="a6" class="light"></td>
+			<td id="b6" class="dark"></td>
+			<td id="c6" class="light"></td>
+			<td id="d6" class="dark"></td>
+			<td id="e6" class="light"></td>
+			<td id="f6" class="dark"></td>
+			<td id="g6" class="light"></td>
+			<td id="h6" class="dark"></td>
+		</tr>
+		<tr id="5">
+			<td id="a5" class="dark"></td>
+			<td id="b5" class="light"></td>
+			<td id="c5" class="dark"></td>
+			<td id="d5" class="light"></td>
+			<td id="e5" class="dark"></td>
+			<td id="f5" class="light"></td>
+			<td id="g5" class="dark"></td>
+			<td id="h5" class="light"></td>
+		</tr>
+		<tr id="4">
+			<td id="a4" class="light"></td>
+			<td id="b4" class="dark"></td>
+			<td id="c4" class="light"></td>
+			<td id="d4" class="dark"></td>
+			<td id="e4" class="light"></td>
+			<td id="f4" class="dark"></td>
+			<td id="g4" class="light"></td>
+			<td id="h4" class="dark"></td>
+		</tr>
+		<tr id="3">
+			<td id="a3" class="dark"></td>
+			<td id="b3" class="light"></td>
+			<td id="c3" class="dark"></td>
+			<td id="d3" class="light"></td>
+			<td id="e3" class="dark"></td>
+			<td id="f3" class="light"></td>
+			<td id="g3" class="dark"></td>
+			<td id="h3" class="light"></td>
+		</tr>
+		<tr id="2">
+			<td id="a2" class="light"></td>
+			<td id="b2" class="dark"></td>
+			<td id="c2" class="light"></td>
+			<td id="d2" class="dark"></td>
+			<td id="e2" class="light"></td>
+			<td id="f2" class="dark"></td>
+			<td id="g2" class="light"></td>
+			<td id="h2" class="dark"></td>
+		</tr>
+		<tr id="1">
+			<td id="a1" class="dark"></td>
+			<td id="b1" class="light"></td>
+			<td id="c1" class="dark"></td>
+			<td id="d1" class="light"></td>
+			<td id="e1" class="dark"></td>
+			<td id="f1" class="light"></td>
+			<td id="g1" class="dark"></td>
+			<td id="h1" class="light"></td>
+		</tr>
+	</table>
+	<div id="lcoord"><p class="lc">a</p><p class="lc">b</p><p class="lc">c</p><p class="lc">d</p><p class="lc">e</p><p class="lc">f</p><p class="lc">g</p><p class="lc">h</p></div>
+</div>
+
+<div class="stats">
+	<button type="button" class="undobtn" onclick="undoMove()">VOLTAR</button>
+	<p id="notated"></p>
+	<p id="wcap"></p>
+	<p id="bcap"></p>
+</div>
+<br>
+<br>
+	<div class="saveload">
+		<button class="savebtn" type="button" value="save" onclick="savegame()">SALVAR 1</button>
+		<button class="savebtn" type="button" value="save" onclick="savegame2()">SALVAR 2</button>
+		<button class="savebtn" type="button" value="load" onclick="loadgame()">CARREGAR 1</button>
+		<button class="savebtn" type="button" value="load" onclick="loadgame2()">CARREGAR 2</button>
+	</div>
+	<!-- <button type="button" onclick="cpuMove ('d7d5')">aut</button> -->
+</body>
+<script type="text/javascript" src="main.js"></script>
+</html>
